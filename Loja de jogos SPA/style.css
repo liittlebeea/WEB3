@@ -1,0 +1,221 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --roxo-escuro: #2b114b;
+  --roxo-medio: #5b21b6;
+  --roxo-claro: #a855f7;
+  --branco: #ffffff;
+  --cinza-claro: #f5f3ff;
+  --cinza-texto: #ddd6fe;
+  --borda: rgba(255, 255, 255, 0.14);
+  --sombra: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1b0b2f 0%, #3b0764 50%, #581c87 100%);
+  color: var(--branco);
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.topo {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--borda);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--sombra);
+}
+
+.marca h1 {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.marca p {
+  color: var(--cinza-texto);
+}
+
+.menu {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.menu a {
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px 18px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  background: var(--branco);
+  color: var(--roxo-escuro);
+}
+
+.conteudo-principal {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero,
+.painel-simples,
+.secao-header,
+.grade-jogos {
+  width: 100%;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.hero-texto,
+.hero-card,
+.painel-simples,
+.secao-header {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--borda);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--sombra);
+  backdrop-filter: blur(12px);
+}
+
+.hero-texto h2,
+.painel-simples h2,
+.secao-header h2 {
+  font-size: 2.2rem;
+  margin: 14px 0;
+}
+
+.hero-texto p,
+.hero-card p,
+.painel-simples p,
+.secao-header p {
+  color: var(--cinza-texto);
+  line-height: 1.7;
+}
+
+.hero-card ul {
+  margin-top: 16px;
+  padding-left: 20px;
+  color: var(--cinza-texto);
+}
+
+.selo {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.14);
+  color: #f3e8ff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.botao-destaque,
+.botao-comprar {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--roxo-claro), #c084fc);
+  color: var(--branco);
+  text-decoration: none;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.botao-destaque:hover,
+.botao-comprar:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.secao-header {
+  margin-bottom: 22px;
+}
+
+.grade-jogos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.jogo-card {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--borda);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.jogo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+}
+
+.jogo-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.jogo-info {
+  padding: 20px;
+}
+
+.jogo-genero {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #f5d0fe;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.jogo-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.preco {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.erro {
+  border: 1px solid rgba(255, 120, 180, 0.4);
+}
+
+@media (max-width: 860px) {
+  .topo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}

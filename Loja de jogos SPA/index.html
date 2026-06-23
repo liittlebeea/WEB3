@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPO Games Store</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topo">
+    <div class="marca">
+      <h1>SPO Games</h1>
+      <p>Sua loja online de jogos favoritos</p>
+    </div>
+
+    <nav class="menu">
+      <a href="#home">Início</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#carrinho">Carrinho</a>
+    </nav>
+  </header>
+
+  <main id="conteudo" class="conteudo-principal">
+  </main>
+
+  <script>
+    const bancoDeJogos = [
+  {
+    id: 1,
+    titulo: "Resident Evil 4 Remake",
+    genero: "Terror/Ação",
+    preco: "R$ 199,90",
+    imagem: "./imagens/re4foda.avif"
+  },
+  {
+    id: 2,
+    titulo: "Baldur's Gate 3",
+    genero: "Aventura/RPG",
+    preco: "R$ 199,99",
+    imagem: "./imagens/bg3foda.avif"
+  },
+  {
+    id: 3,
+    titulo: "Hogwarts Legacy",
+    genero: "Aventura/RPG",
+    preco: "R$ 249,90",
+    imagem: "./imagens/hlfoda.jfif"
+  },
+  {
+    id: 4,
+    titulo: "R.E.P.O",
+    genero: "Terror Cooperativo",
+    preco: "R$ 29,99",
+    imagem: "./imagens/repofoda.webp"
+  },
+  {
+    id: 5,
+    titulo: "Resident Evil Village (O melhor)",
+    genero: "Terror/Ação",
+    preco: "R$ 169,99",
+    imagem: "./imagens/fodafoda.jpg"
+  },
+  {
+    id: 6,
+    titulo: "Resident Evil Veronica (Antecipado)",
+    genero: "Terror/Ação",
+    preco: "R$ 599,99",
+    imagem: "./imagens/revfoda.jpg"
+  },
+  {
+    id: 7,
+    titulo: "Bayonetta",
+    genero: "Ação/Hack and Slash",
+    preco: "R$ 79,99",
+    imagem: "./imagens/bafoda.png"
+  },
+  {
+    id: 8,
+    titulo: "Elden Ring",
+    genero: "RPG/Ação",
+    preco: "R$ 229,90",
+    imagem: "./imagens/egfoda.png"
+  },
+  {
+    id: 9,
+    titulo: "Hello Kitty Island Adventure",
+    genero: "Aventura/Simulação",
+    preco: "R$ 129,90",
+    imagem: "./imagens/hkfoda.png"
+  },
+  {
+    id: 10,
+    titulo: "Resident Evil 3",
+    genero: "Terror/Ação",
+    preco: "R$ 139,90",
+    imagem: "./imagens/re3foda.png"
+  },
+  {
+    id: 11,
+    titulo: "Enigma do Medo",
+    genero: "Suspense/Aventura",
+    preco: "R$ 89,90",
+    imagem: "./imagens/emfoda.png"
+  },
+  {
+    id: 12,
+    titulo: "Devil May Cry 5",
+    genero: "Ação/Hack and Slash",
+    preco: "R$ 99,90",
+    imagem: "./imagens/dmcfoda.png"
+  }
+];
+    const container = document.getElementById("conteudo");
+
+    function gerarCatalogoHTML() {
+      let html = `
+        <section class="secao-header">
+          <span class="selo">Catálogo em destaque</span>
+          <h2>Nossos jogos</h2>
+          <p>Escolha entre os títulos mais desejados da SPO Games.</p>
+        </section>
+        <section class="grade-jogos">
+      `;
+
+      bancoDeJogos.forEach((jogo) => {
+        html += `
+          <article class="jogo-card">
+            <img src="${jogo.imagem}" alt="Imagem ilustrativa do jogo ${jogo.titulo}" loading="lazy" />
+            <div class="jogo-info">
+              <span class="jogo-genero">${jogo.genero}</span>
+              <h3>${jogo.titulo}</h3>
+              <p class="preco">${jogo.preco}</p>
+              <button class="botao-comprar">Comprar</button>
+            </div>
+          </article>
+        `;
+      });
+
+      html += `</section>`;
+      return html;
+    }
+
+    const rotas = {
+      home: `
+        <section class="hero">
+          <div class="hero-texto">
+            <span class="selo">Loja online gamer</span>
+            <h2>Bem-vindo(a) à SPO Games</h2>
+            <a class="botao-destaque" href="#catalogo">Ver catálogo</a>
+          </div>
+          <div class="hero-card">
+            <h3>Ofertas da semana</h3>
+            <p>Loja virtual de joguinhos!</p>
+            <ul>
+              <li>Jogos e promoões maneiras</li>
+              <li>Compre Re Village</li>
+              <li>Melhores descontos aqui!</li>
+            </ul>
+          </div>
+        </section>
+      `,
+      catalogo: gerarCatalogoHTML(),
+      carrinho: `
+        <section class="painel-simples">
+          <span class="selo">Checkout</span>
+          <h2>Carrinho</h2>
+          <p>Seu carrinho está vazio.</p>
+        </section>
+      `
+    };
+
+    const rotaNaoEncontrada = `
+      <section class="painel-simples erro">
+        <span class="selo">Erro</span>
+        <h2>Erro 404</h2>
+        <p>Rota não encontrada.</p>
+      </section>
+    `;
+
+    function navegar() {
+      let rotaAtual = window.location.hash || "#home";
+      rotaAtual = rotaAtual.replace("#", "");
+
+      if (rotas[rotaAtual]) {
+        container.innerHTML = rotas[rotaAtual];
+      } else {
+        container.innerHTML = rotaNaoEncontrada;
+      }
+    }
+
+    window.addEventListener("hashchange", navegar);
+    window.addEventListener("load", navegar);
+  </script>
+</body>
+</html>
